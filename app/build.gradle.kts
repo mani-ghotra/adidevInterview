@@ -25,8 +25,8 @@ android {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
             excludes += "/*.jar"
-            excludes +="META-INF/LICENSE.md"
-            excludes +="META-INF/LICENSE-notice.md"
+            excludes += "META-INF/LICENSE.md"
+            excludes += "META-INF/LICENSE-notice.md"
         }
     }
 
@@ -70,8 +70,6 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2")
-    androidTestImplementation("io.mockk:mockk:1.14.4")
 
     implementation(libs.coroutines)
 
@@ -90,5 +88,19 @@ dependencies {
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
     testImplementation(kotlin("test"))
+
+    testImplementation(libs.junit)
+    testImplementation(libs.mockk.android)
+
+    testImplementation(libs.coroutines.test)
+
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.test.runner)
+    androidTestImplementation(libs.androidx.test.rules)
+    androidTestImplementation(libs.androidx.core.ktx)
+    androidTestImplementation(libs.mockk.android)
+    androidTestImplementation(libs.coroutines.test)
+
+    debugImplementation(libs.androidx.ui.tooling)
 
 }
