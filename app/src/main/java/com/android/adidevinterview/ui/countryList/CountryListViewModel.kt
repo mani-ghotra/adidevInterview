@@ -24,12 +24,11 @@ class CountryListViewModel @Inject constructor(
 
     private var searchJob: Job? = null
 
-    init {
-        loadCountries()
-    }
 
     fun loadCountries() {
         _state.value = _state.value.copy(isLoading = true)
+        searchJob?.cancel()
+        searchJob = null
         viewModelScope.launch {
             getCountriesUseCase().collect { resource ->
                 when (resource) {
@@ -67,7 +66,8 @@ class CountryListViewModel @Inject constructor(
                 loadCountries()
             } else {
                 searchCountriesUseCase(query).collect { results ->
-                    _state.value = _state.value.copy(countries = results)
+                    _state.value =
+                        _state.value.copy(countries = results)
                 }
             }
         }

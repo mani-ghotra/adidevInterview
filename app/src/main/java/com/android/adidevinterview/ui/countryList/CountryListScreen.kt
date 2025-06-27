@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,6 +20,10 @@ import com.android.adidevinterview.ui.countryList.components.SearchBar
 @Composable
 fun CountryListScreen(viewModel: CountryListViewModel = hiltViewModel()) {
     val state by viewModel.state
+
+    LaunchedEffect(Unit) {
+        viewModel.loadCountries() // Trigger initial load
+    }
 
     Scaffold(topBar = {
         SearchBar(
@@ -39,6 +44,7 @@ fun CountryListScreen(viewModel: CountryListViewModel = hiltViewModel()) {
                     modifier = Modifier.align(Alignment.Center),
                     onRetry = { viewModel.loadCountries() }
                 )
+
                 state.countries.isEmpty() -> EmptyView(Modifier.align(Alignment.Center))
                 else -> CountryList(
                     countries = state.countries,

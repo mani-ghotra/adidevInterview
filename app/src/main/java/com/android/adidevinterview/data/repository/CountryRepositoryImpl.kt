@@ -28,8 +28,12 @@ class CountryRepositoryImpl @Inject constructor(
                 mapper.mapToEntity(country, index)
             }
 
+            // Validate before insertion
+            val validEntities = entities.filter { entity ->
+                localDataSource.countryExists(entity)
+            }
 
-            localDataSource.cacheCountries(entities)
+            localDataSource.cacheCountries(validEntities)
 
             emitAll(
                 localDataSource.getCountries()
