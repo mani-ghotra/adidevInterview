@@ -1,3 +1,5 @@
+package com.android.adidevinterview.data.repository
+
 import com.android.adidevinterview.data.datasource.CountryLocalDataSource
 import com.android.adidevinterview.data.datasource.CountryRemoteDataSource
 import com.android.adidevinterview.domain.model.Country
@@ -47,7 +49,7 @@ class CountryRepositoryImpl @Inject constructor(
             )
 
         } catch (e: Exception) {
-
+            print(e)
             // Check if we have any cached data
             val cachedCountries = localDataSource.getCountries().firstOrNull()
             if (cachedCountries.isNullOrEmpty()) {

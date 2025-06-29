@@ -1,6 +1,6 @@
 package com.android.adidevinterview
 
-import CountryRepositoryImpl
+import com.android.adidevinterview.data.repository.CountryRepositoryImpl
 import com.android.adidevinterview.data.datasource.CountryLocalDataSource
 import com.android.adidevinterview.data.datasource.CountryRemoteDataSource
 import com.android.adidevinterview.data.local.CountryEntity
